@@ -222,7 +222,7 @@ metadata:
     external-dns.alpha.kubernetes.io/target: traefik.codemowers.ee
 spec:
   rules:
-  - host: log-laurivosandi.codemowers.ee
+  - host: log-rasmusmai.codemowers.ee
     http:
       paths:
       - pathType: Prefix
