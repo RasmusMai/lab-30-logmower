@@ -333,7 +333,7 @@ spec:
     spec:
       containers:
         - name: mongoexpress
-          image: harbor.k-space.ee/k-space/library/mongo-express
+          image: harbor.codemowers.eu/docker.io/library/mongo-express
           ports:
            - name: mongoexpress
              containerPort: 8081
