@@ -341,7 +341,7 @@ spec:
             - name: ME_CONFIG_MONGODB_URL
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-application-readwrite
+                  name: logmower-mongodb-application-readwrite
                   key: connectionString.standard
             - name: ME_CONFIG_MONGODB_ENABLE_ADMIN
               value: "true"
