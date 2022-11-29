@@ -315,3 +315,47 @@ spec:
               secretKeyRef:
                 name: logmower-mongodb-application-readonly
                 key: connectionString.standard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongoexpress
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongoexpress
+  template:
+    metadata:
+      labels:
+        app: mongoexpress
+    spec:
+      containers:
+        - name: mongoexpress
+          image: mongo-express
+          ports:
+           - name: mongoexpress
+             containerPort: 8081
+          env:
+            - name: ME_CONFIG_MONGODB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-application-readwrite
+                  key: connectionString.standard
+            - name: ME_CONFIG_MONGODB_ENABLE_ADMIN
+              value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongoexpress
+  labels:
+    app: mongoexpress
+spec:
+  selector:
+    app: mongoexpress
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8081
